@@ -1,11 +1,11 @@
 const { User } = require('../models');
 
 module.exports = {
-    getAllUser() {
+    getAllUsers() {
         return User?.findAll();
     },
     getUsers(offset=0, limit=10) {
-        return User?.findAll({ offset, limit});
+        return User?.findAll({ offset: offset, limit: limit});
     },
     getAdmins() {
         return User?.findAll({where: {role: "admin"}});

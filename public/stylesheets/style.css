@@ -6,3 +6,34 @@ body {
 a {
   color: #00B7FF;
 }
+.modal {
+  position: fixed;
+  top: 60px;
+  left: 300px;
+  right: 0;
+  bottom: 0;
+  width: 800px;
+  height: 500px;
+  display: flex;
+  border: 2px solid lightgrey;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: white;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.35s ease-in;
+  box-shadow: 2px 2px 2px black;
+}
+
+.is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+#close {
+  position: fixed;
+  top:65px;
+  left: 305px;
+}
