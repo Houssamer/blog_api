@@ -13,16 +13,16 @@ module.exports = {
     getArticle(id) {
         return Article?.findAll({where:{id: id}});
     },
-    getUserByUserId(UserId) {
+    getArticleByUserId(UserId) {
         return Article?.findAll({where: {UsreId: UserId}});
     },
-    addUser(article) {
+    addArticle(article) {
         Article?.create(article);
     },
-    updateUser(id, article) {
+    updateArticle(id, article) {
         Article?.update(article, {where: {id: id}});
     },
-    deleteUser(id) {
+    deleteArticle(id) {
         Article?.destroy({where: {id: id}})
     },
 }

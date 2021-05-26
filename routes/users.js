@@ -2,6 +2,7 @@ var express = require('express');
 const user = require('../models/user.js');
 var router = express.Router();
 const usersRepo = require('../respositories/users.js');
+var { authMiddleware } = require('../middlewares/authMiddleware');
 
 /* GET users listing. */
 
@@ -42,7 +43,7 @@ router.get('/:role', (req, res) => {
 
 // trouver par l'identifiant
 
-router.get('/:id', (req, res) => {
+router.get('/id/:id', (req, res) => {
   usersRepo.getUser(req.params.id)
     .then(user => res.status(200).json(user))
     .catch(err => console.log(err));
@@ -50,7 +51,7 @@ router.get('/:id', (req, res) => {
 
 // trouver par l'email
 
-router.get('/:email', (req, res) => {
+router.get('/email/:email', (req, res) => {
   usersRepo.getUserByEmail(req.params.email)
     .then(user => res.status(200).json(user))
     .catch(err => console.log(err));
@@ -58,7 +59,7 @@ router.get('/:email', (req, res) => {
 
 // ajouter un user
 
-router.post('/add', (req, res) => {
+router.post('/add', authMiddleware, (req, res) => {
   const {username, email, password, role} = req.body;
 
   if (!username || !email) {res.status(400).json({message: "veuillez entrer toutes les champs"})}
@@ -77,13 +78,13 @@ router.post('/add', (req, res) => {
   }
 })
 
-router.post('/:id', (req, res) => {
+router.post('/:id', authMiddleware, (req, res) => {
   usersRepo.updateUser(req.params.id, req.body);
   res.status(200).redirect("http://localhost:3000/");
 })
 
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authMiddleware, (req, res) => {
   usersRepo.deleteUser(req.params.id);
   res.status(200).redirect("http://localhost:3000/");
 })
