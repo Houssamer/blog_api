@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Article.belongsTo(models.User)
       Article.hasMany(models.Comment)
-      Article.belongsToMany(models.Tags, {through: 'ArticleTags'})
+      Article.belongsToMany(models.Tag, {through: 'ArticleTags'})
     }
   };
   Article.init({
