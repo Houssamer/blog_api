@@ -30,7 +30,7 @@ router.post('/:email', (req, res) => {
                     }
                   );
             } else {
-                res.status(404).json({message: "ni author ni admin"});
+                res.status(403).json({message: "ni author ni admin"});
             }
         })
         .catch(err => res.status(404).json({message: err}));
