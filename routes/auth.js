@@ -13,7 +13,7 @@ router.post('/:email', (req, res) => {
         .then(user => {
             if (user[0].role == 'admin' || user[0].role == 'author') {
                 jwt.sign(
-                    { id: user.id },
+                    { id: user[0].id },
                     secretJWT,
                     { expiresIn: '12h' },
                     (err, token) => {
@@ -21,10 +21,10 @@ router.post('/:email', (req, res) => {
                       res.status(200).json({
                         token,
                         user: {
-                          id: user.id,
-                          username: user.username,
-                          email: user.email,
-                          role: user.role,
+                          id: user[0].id,
+                          username: user[0].username,
+                          email: user[0].email,
+                          role: user[0].role,
                         },
                       });
                     }
